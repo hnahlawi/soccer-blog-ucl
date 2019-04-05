@@ -1,0 +1,59 @@
+body{
+
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	overflow-y: hidden;
+	overflow-x: hidden;
+}
+
+
+#mainContainer{
+	width: 79%;
+	margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    height: 100vh;
+    display: inline;
+    float: right;
+
+}
+
+
+img{
+
+	width: 100px;
+	height:	 100px;
+
+}
+
+.game-wrapper{
+padding-top: 30px;
+width: 100%;
+
+}
+
+.home-team{
+	display: inline-block;
+}
+
+.away-team{
+	margin-left: 10%;
+	display: inline-block;
+}
+
+.versus{
+	margin-left: 10%;
+	display: inline-block;
+
+}
+
+.comment{
+	text-align: left; 
+	border-bottom: 1px; 
+	border-color: grey; 
+	border-bottom-style: solid; 
+	height: 7vh; 
+	margin-top: 10px;
+
+}
