@@ -4,6 +4,7 @@ const express = require('express')
 const port = process.env.PORT || 3000
 const bodyParser = require('body-parser') // middleware for parsing HTTP body from client
 const session = require('express-session')
+const path = require('path')
 
 const { ObjectID } = require('mongodb')
 
@@ -16,6 +17,10 @@ const app = express();
 app.use(bodyParser.json());
 // parse incoming parameters to req.body
 app.use(bodyParser.urlencoded({ extended:true }))
+
+
+app.use(express.static(path.join(__dirname)));
+
 
 
 app.use(session({
@@ -34,6 +39,7 @@ app.use(session({
 
 
 app.get('/', (req, res) => {
+	console.log(__dirname)
 	res.sendFile(__dirname + '/index.html')
 })
 
