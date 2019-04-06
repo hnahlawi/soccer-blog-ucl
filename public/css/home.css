@@ -7,6 +7,9 @@ body{
 	overflow-x: hidden;
 }
 
+h5{
+	color:navy;
+}
 
 #mainContainer{
 	width: 79%;
@@ -120,6 +123,7 @@ font-size: 1.2em;
 }
 
 #refresh-div{
+	padding-top: 15px;
 	background-color: #F8F8F8; 
 	width: 100%; 
 	text-align: right; 
@@ -176,3 +180,5 @@ margin: 0;
 	border-color: navy; 
 	height: 6.4vh;
 }
+
+
