@@ -1,0 +1,27 @@
+{
+  "name": "soccer-blog-ucl",
+  "version": "1.0.0",
+  "description": "soccer blog app",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "mongodb": "^3.2.3",
+    "mongoose": "^5.4.22"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hnahlawi/soccer-blog-ucl.git"
+  },
+  "author": "hadi and isaiah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hnahlawi/soccer-blog-ucl/issues"
+  },
+  "homepage": "https://github.com/hnahlawi/soccer-blog-ucl#readme"
+}
