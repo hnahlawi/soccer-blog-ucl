@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({
 const sessionChecker = (req, res, next) => {
 	if (req.session.user) {
 		console.log('here')
-        res.sendFile(path.join(__dirname, "/home.html"));
+        res.redirect('/dashboard');
 	} else {
 		next();
 	}
@@ -55,12 +55,23 @@ app.use(session({
 	}
 }))
 // Add middleware to check for logged-in users
-app.get('/', (req, res) => {
+app.get('/', sessionChecker, (req, res) => {
 	console.log('this is the session user', req.session.user)
-	
-	res.sendFile(__dirname + '/index.html')
+	res.redirect('/dashboard')
 })
 
+
+
+app.get('/dashboard', (req, res) =>{
+    if (req.session.user){
+        res.sendFile(__dirname + '/home.html')
+    }else{
+
+        res.redirect('/')
+
+    }
+
+})
 
 app.post('/signup', (req, res) =>{
 
