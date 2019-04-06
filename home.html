@@ -21,16 +21,19 @@
     <div class="col-md-6 col-md-offset-2 col-sm-12" id="side-panel">
 
         <form id="match-form">
-            <select name="dropdown1">
-                <option value="Quarter Finals" selected>Quarter Finals</option>
+            <select name="dropdown1" id="dropdown1">
+
+                <option value="Select round:" selected>Select round:</option>
+                <option value="Quarter Finals">Quarter Finals</option>
                 <option value="Semi Finals">Semi Finals</option>
                 <option value="Finals">Finals</option>
             </select>
             <br><br>
-            <select name="dropdown2">
-                <option value="Computer Architecture" selected>Computer Architecture</option>
-                <option value="Java">Java</option>
-                <option value="Discrete Mathematics">Discrete Mathematics</option>
+            <select name="dropdown2" id="dropdown2">
+                <option value="Match 1" selected>Select match:</option>
+                <option value="Match 1">Match 1</option>
+                <option value="Match 2">Match 2</option>
+                <option value="Match 3">Match 3</option>
             </select>
             <br><br>
             <button type="submit" id="goButton">Let's Go!!</button>

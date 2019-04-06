@@ -191,7 +191,8 @@ app.post('/match', (req, res)=>{
         home: req.body.home,
         away: req.body.away,
         round: req.body.round,
-        date: dateObj
+        date: dateObj.toISOString(),
+        match_string: req.body.match_string
 
     })
 

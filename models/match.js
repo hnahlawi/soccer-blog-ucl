@@ -25,6 +25,12 @@ const MatchSchema = new mongoose.Schema({
 		required: true,
 		minlength: 1,
 		trim: true
+	},
+	match_string:{
+		type: String,
+		required: true,
+		minlength: 1,
+		trim: true
 	}
 });
 
