@@ -9,6 +9,12 @@ const bcrypt = require('bcryptjs')
 
 const { User } = require('./models/user.js')
 
+const { Match } = require('./models/match.js')
+const { Post } = require('./models/post.js')
+const { Team } = require('./models/team.js')
+
+const datetime = require('date-and-time')
+
 
 const {
 	ObjectID
@@ -163,6 +169,177 @@ app.delete('/user/:id', (req, res)=>{
 
 
 })
+
+
+/* 
+Here are the routes for matches
+
+*/
+
+app.post('/match', (req, res)=>{
+
+    
+    const dateObj = datetime.parse(req.body.date, 'DD/MM/YYYY')
+
+    const match = new Match({
+
+        home: req.body.home,
+        away: req.body.away,
+        round: req.body.round,
+        date: dateObj
+
+    })
+
+    match.save().then((result)=>{
+
+        console.log('added match')
+        res.send(match)
+    }).catch((error)=>{
+
+        console.log('could not add match: ', error)
+        res.send('could not add match')
+    })
+
+
+})
+
+
+app.get('/match/:id', (req, res)=>{
+
+    
+    Match.findOne({"_id": req.params.id}).then((result)=>{
+
+        if(!result){
+            res.send('match does not exist')
+        }
+        else{
+
+            res.send(result)
+        }
+
+
+    })
+
+})
+
+app.get('/matchesByRound/:round', (req, res) =>{
+
+    Match.find({"round": req.params.round}).then((result)=>{
+
+        if(result.length !== 0){
+            res.send(result)
+        }
+        else{
+
+            res.send('no matches in this round')
+        }
+
+    })
+
+})
+
+
+
+/* 
+
+Routes for teams
+
+*/
+
+app.post('/team', (req, res)=>{
+    const team = new Team({
+
+        name: req.body.name,
+        stadium: req.body.stadium,
+        abbreviation: req.body.abbreviation
+
+    })
+
+    team.save().then((result)=>{
+
+        console.log('added team')
+        res.send(team)
+    }).catch((error)=>{
+
+        console.log('could not add team: ', error)
+        res.send('could not add team')
+    })
+
+
+})
+
+
+app.get('/team/:id', (req, res)=>{
+
+    
+    Team.findOne({"_id": req.params.id}).then((result)=>{
+
+        if(!result){
+            res.send('team does not exist')
+        }
+        else{
+
+            res.send(result)
+        }
+
+
+    })
+
+})
+
+
+/*
+
+Routes for posts
+
+
+*/
+
+app.post('/comment', (req, res)=>{
+    const post = new Post({
+
+        user_id: req.body.user_id,
+        match_id: req.body.match_id,
+        text: req.body.text,
+        date: new Date().toISOString()
+
+    })
+
+    post.save().then((result)=>{
+
+        console.log('added post')
+        res.send(post)
+    }).catch((error)=>{
+
+        console.log('could not add post: ', error)
+        res.send('could not add post')
+    })
+
+
+})
+
+
+app.get('/comments/:match_id', (req, res)=>{
+
+    Post.find({"match_id": req.params.match_id}).then((result)=>{
+
+        if(!result){
+            res.send('No comments on this game')
+        }
+        else{
+
+            result.sort(function(a, b) {
+                
+                return new Date(b.date) - new Date(a.date)
+            })
+
+            res.send(result)
+        }
+
+    })
+
+})
+
 
 
 
