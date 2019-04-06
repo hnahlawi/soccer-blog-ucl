@@ -7,6 +7,7 @@ const session = require('express-session')
 const path = require('path')
 const bcrypt = require('bcryptjs')
 
+const { User } = require('./models/user.js')
 
 
 const {
@@ -53,7 +54,7 @@ app.get('/', (req, res) => {
 
 
 app.post('/signup', (req, res) =>{
-
+	
 	const user = new User({
 		username: req.body.username,
 		password: req.body.password
@@ -65,17 +66,20 @@ app.post('/signup', (req, res) =>{
             //res.send(result);
             
             user.save().then((result) => {
+            	console.log('saved user')
                 req.session.user = user._id;
                 req.session.email = user.username;
                 res.sendFile(path.join(__dirname, "/home.html"));
             }).catch((error) => {
                 //res.sendFile(path.join(__dirname, "/public/pages/index.html"));
-
+                console.log('error')
                 res.send(error.message);
             }); 
         }else{
+        	console.log('redirecting back to home')
             res.redirect('/');
         }
+})
 
 })
 
