@@ -29,6 +29,18 @@ app.use(bodyParser.urlencoded({
 }))
 
 
+
+
+const sessionChecker = (req, res, next) => {
+	if (req.session.user) {
+		console.log('here')
+        res.sendFile(path.join(__dirname, "/home.html"));
+	} else {
+		next();
+	}
+};
+
+
 app.use(express.static(path.join(__dirname)));
 
 
@@ -48,13 +60,14 @@ app.use(session({
 
 
 app.get('/', (req, res) => {
-	console.log(__dirname)
+	console.log('this is the session user', req.session.user)
+	
 	res.sendFile(__dirname + '/index.html')
 })
 
 
 app.post('/signup', (req, res) =>{
-	
+
 	const user = new User({
 		username: req.body.username,
 		password: req.body.password
@@ -83,6 +96,51 @@ app.post('/signup', (req, res) =>{
 
 })
 
+
+app.post('/login', sessionChecker, (req, res) => {
+    //log(req.body.isAdmin);
+    const username = req.body.username;
+    const password = req.body.password;
+    console.log('username we got is', username)
+    console.log('password we got is', password)
+    User.findOne({"username": username}).then((user)=>{
+        if(!user){
+            res.send('user does not exist');
+        }else{
+        	bcrypt.compare(password, user.password, (error, result) => {
+                if(error){
+                    res.send('wrong credentials')
+             }
+
+            if (result == true){
+            req.session.user = user._id;
+            req.session.username = user.username;
+            //res.send(user);
+            console.log(req.session.username)
+            res.sendFile(path.join(__dirname, "/home.html"));
+ 			 }
+ 			 else{
+ 			 	res.send('wrong credentials')
+ 			 }
+           })
+        }
+    }).catch((error) => {
+        res.send('some error');
+    });
+});
+
+
+
+app.get('/signOut', (req, res) =>{
+    req.session.destroy((error) => {
+        if (error) {
+            res.status(500).send(error);
+        } else {
+            res.redirect('/');
+        }
+    });  
+
+})
 
 app.listen(port, () => {
 	log(`Listening on port ${port}...`)
