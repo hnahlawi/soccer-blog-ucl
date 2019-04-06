@@ -5,17 +5,23 @@ const port = process.env.PORT || 3000
 const bodyParser = require('body-parser') // middleware for parsing HTTP body from client
 const session = require('express-session')
 
-const { ObjectID } = require('mongodb')
+const {
+	ObjectID
+} = require('mongodb')
 
 // Import our mongoose connection
-const { mongoose } = require('./db/mongoose');
+const {
+	mongoose
+} = require('./db/mongoose');
 
 
 const app = express();
 // body-parser middleware setup.  Will parse the JSON and convert to object
 app.use(bodyParser.json());
 // parse incoming parameters to req.body
-app.use(bodyParser.urlencoded({ extended:true }))
+app.use(bodyParser.urlencoded({
+	extended: true
+}))
 
 
 app.use(session({
@@ -27,7 +33,6 @@ app.use(session({
 		httpOnly: true
 	}
 }))
-
 // Add middleware to check for logged-in users
 
 
@@ -38,14 +43,6 @@ app.get('/', (req, res) => {
 })
 
 
-
-
-
-
-
-
-
 app.listen(port, () => {
 	log(`Listening on port ${port}...`)
 });
-
