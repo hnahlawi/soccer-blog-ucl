@@ -4,6 +4,7 @@ const express = require('express')
 const port = process.env.PORT || 3000
 const bodyParser = require('body-parser') // middleware for parsing HTTP body from client
 const session = require('express-session')
+const path = require('path')
 
 const {
 	ObjectID
@@ -24,6 +25,10 @@ app.use(bodyParser.urlencoded({
 }))
 
 
+app.use(express.static(path.join(__dirname)));
+
+
+
 app.use(session({
 	secret: 'oursecret',
 	resave: false,
@@ -39,6 +44,7 @@ app.use(session({
 
 
 app.get('/', (req, res) => {
+	console.log(__dirname)
 	res.sendFile(__dirname + '/index.html')
 })
 
