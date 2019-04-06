@@ -55,10 +55,6 @@ app.use(session({
 	}
 }))
 // Add middleware to check for logged-in users
-
-
-
-
 app.get('/', (req, res) => {
 	console.log('this is the session user', req.session.user)
 	
@@ -141,6 +137,26 @@ app.get('/signOut', (req, res) =>{
     });  
 
 })
+
+
+app.delete('/user/:id', (req, res)=>{
+
+    User.findOneAndRemove({_id: new ObjectID(req.params.id)}, (err, res) => {
+        if(err){
+            res.send('Error occured, cannot delete');
+        }else{
+
+            res.send('deleted user: ', req.params.id)
+        }
+    });
+
+
+})
+
+
+
+
+
 
 app.listen(port, () => {
 	log(`Listening on port ${port}...`)
