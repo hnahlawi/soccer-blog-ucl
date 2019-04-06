@@ -10,45 +10,93 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
   </script>
+  <link rel="stylesheet" href="./public/css/index.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>UCL Blog</title>
-  <style>
-    body {
-      background: url('images/ucl.jpg') no-repeat center center fixed;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
-
-
-    }
-  </style>
 </head>
 
 <body>
+  <header>
+    <button type="button" class="btn btn-primary headerButton" data-toggle="modal" data-target="#ModalLogin">
+      Login
+    </button>
+    <button type="button" class="btn btn-primary headerButton" data-toggle="modal" data-target="#ModalSignUp">
+      Sign Up
+    </button>
+  </header>
 
-  <form style="margin-left: 150px; margin-top: 100px; color: white;">
-    <div class="form-group">
-      <label for="exampleInputEmail1" style="width: 200px; font-size: 1.5em;">Username</label>
-      <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter username"
-        style="width: 200px">
+
+  <!-- login -->
+  <div class="modal fade" id="ModalLogin" tabindex="-1" role="dialog" aria-labelledby="ModalLoginLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">Sign In</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="InputEmail1">Username</label>
+              <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp"
+                placeholder="Enter email">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="Password1">Password</label>
+              <input type="password" class="form-control" id="InputPassword1" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary">SIgn In</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1" style="width: 200px; font-size: 1.5em;">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
-        style="width: 200px">
+  </div>
+
+  <!-- signup -->
+  <div class="modal fade" id="ModalSignUp" tabindex="-1" role="dialog" aria-labelledby="ModalSignUpLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="eInputEmail2">Username</label>
+              <input type="email" class="form-control" id="InputEmail2" aria-describedby="emailHelp"
+                placeholder="Enter Email">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="InputPassword1">Password</label>
+              <input type="password" class="form-control" id="InputPassword1" placeholder="Password">
+            </div>
+            <!-- <div class="form-group form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div> -->
+            <button type="submit" class="btn btn-primary">SIgn In</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary"
-      style="margin-top: 30px; font-size: 1.5em; width: 200px; background-color: navy; border-color: navy;">Login</button>
-  </form>
-
-
-
-
-
-
+  </div>
 
 
 

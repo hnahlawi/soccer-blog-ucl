@@ -1,0 +1,18 @@
+body {
+    background: url('../../images/ucl.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+
+}
+
+header {
+    overflow: auto;
+}
+
+.headerButton {
+    float: right;
+    margin: 1%;
+}

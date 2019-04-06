@@ -1,79 +1,86 @@
 <html>
+
 <head>
-	
- 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-      
-      <link rel="stylesheet" href="./home.css">
 
-</head>	
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+    <link rel="stylesheet" href="./public/css/home.css">
+
+</head>
+
 <body>
-<div class="col-md-6 col-md-offset-2 col-sm-12" id="side-panel">
-        
-    <form id="match-form">
-         <select name = "dropdown1">
-            <option value = "Quarter Finals" selected>Quarter Finals</option>
-            <option value = "Semi Finals">Semi Finals</option>
-            <option value = "Finals">Finals</option>
-         </select>
-         <br><br>
-         <select name = "dropdown2">
-            <option value = "Computer Architecture" selected>Computer Architecture</option>
-            <option value = "Java">Java</option>
-            <option value = "Discrete Mathematics">Discrete Mathematics</option>
-         </select>
-         <br><br>
-         <button type="submit" id="goButton">Let's Go!!</button>
+    <div class="col-md-6 col-md-offset-2 col-sm-12" id="side-panel">
 
-      </form>
+        <form id="match-form">
+            <select name="dropdown1">
+                <option value="Quarter Finals" selected>Quarter Finals</option>
+                <option value="Semi Finals">Semi Finals</option>
+                <option value="Finals">Finals</option>
+            </select>
+            <br><br>
+            <select name="dropdown2">
+                <option value="Computer Architecture" selected>Computer Architecture</option>
+                <option value="Java">Java</option>
+                <option value="Discrete Mathematics">Discrete Mathematics</option>
+            </select>
+            <br><br>
+            <button type="submit" id="goButton">Let's Go!!</button>
 
-    <form id="sign-out-form">
-      <button id="sign-out-button" >Sign Out</button>
-  </form>
+        </form>
 
-</div>
+        <form id="sign-out-form">
+            <button id="sign-out-button">Sign Out</button>
+        </form>
 
-<div id="mainContainer">
-    
+    </div>
+
+    <div id="mainContainer">
 
 
-    <div class="col-md-12 col-md-offset-2 col-sm-12" id="game-column">
-    	<div class="game-wrapper">
-    		<div class="home-team">
 
-    			<img src="images/FC Barcelona.PNG"/>
-    			<br>
-    			<span>FC Barcelona</span>
+        <div class="col-md-12 col-md-offset-2 col-sm-12" id="game-column">
+            <div class="game-wrapper">
+                <div class="home-team">
 
-    		</div>
-    		<div class="versus">
-    			
-    			<span id="versus">vs.</span>
+                    <img src="images/FC Barcelona.PNG" />
+                    <br>
+                    <span>FC Barcelona</span>
 
-    		</div>
+                </div>
+                <div class="versus">
 
-    		<div class="away-team">
-    			
-    			<img src="images/Manchester United.PNG"/>
-    			<br>
-				<span class="team-name">Manchester United</span>
-    		</div>
-            <div>
-                <br>
-                <span class="team-name">Stadium: Camp Nou</span><br>
-                <span class="team-name">Wednesday April 5, 2019</span>
-            
+                    <span id="versus">vs.</span>
+
+                </div>
+
+                <div class="away-team">
+
+                    <img src="images/Manchester United.PNG" />
+                    <br>
+                    <span class="team-name">Manchester United</span>
+                </div>
+                <div>
+                    <br>
+                    <span class="team-name">Stadium: Camp Nou</span><br>
+                    <span class="team-name">Wednesday April 5, 2019</span>
+
+                </div>
+
             </div>
-        
-			</div>
 
 
-	</div>
-            <div id="refresh-div">
-                
-                <img src="images/refresh.png" id="refresh-img"/>
-            </div>
+        </div>
+        <div id="refresh-div">
+
+            <img src="images/refresh.png" id="refresh-img" />
+        </div>
 
 
         <div class="col-md-12 col-md-offset-2 col-sm-12" id="comment-section">
@@ -128,27 +135,28 @@
 
                 <span>This is my comment whats up</span>
             </div>
-            
-            
+
+
         </div>
         <br>
-    <div class="col-md-12 col-md-offset-2 col-sm-12" id="new-comment-div">
+        <div class="col-md-12 col-md-offset-2 col-sm-12" id="new-comment-div">
             <div class="panel panel-info">
 
 
 
 
-                <div class="panel-body" >
-                    <textarea class="form-control" placeholder="write a comment..." rows="2" id="new-comment-text"></textarea>
+                <div class="panel-body">
+                    <textarea class="form-control" placeholder="write a comment..." rows="2"
+                        id="new-comment-text"></textarea>
                     <button type="button" class="btn btn-info pull-right" id="post-button">Post</button>
                 </div>
             </div>
+        </div>
+
+
+
+
     </div>
-
-
-
-
-</div>
 
 
 
