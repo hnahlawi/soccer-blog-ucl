@@ -4,7 +4,9 @@
   "description": "soccer blog app",
   "main": "app.js",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "date-and-time": "^0.6.3",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "mongodb": "^3.2.3",

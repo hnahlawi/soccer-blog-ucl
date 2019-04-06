@@ -61,7 +61,7 @@ app.use(session({
 	}
 }))
 // Add middleware to check for logged-in users
-app.get('/', sessionChecker, (req, res) => {
+app.get('/', (req, res) => {
 	console.log('this is the session user', req.session.user)
 	res.redirect('/dashboard')
 })
@@ -69,11 +69,13 @@ app.get('/', sessionChecker, (req, res) => {
 
 
 app.get('/dashboard', (req, res) =>{
+    console.log(req.session)
     if (req.session.user){
+        console.log('in dashboard session detected')
         res.sendFile(__dirname + '/home.html')
     }else{
 
-        res.redirect('/')
+        res.sendFile(__dirname + '/index.html')
 
     }
 
@@ -95,6 +97,7 @@ app.post('/signup', (req, res) =>{
             	console.log('saved user')
                 req.session.user = user._id;
                 req.session.email = user.username;
+                req.session.save()
                 res.sendFile(path.join(__dirname, "/home.html"));
             }).catch((error) => {
                 //res.sendFile(path.join(__dirname, "/public/pages/index.html"));
@@ -128,9 +131,11 @@ app.post('/login', sessionChecker, (req, res) => {
             if (result == true){
             req.session.user = user._id;
             req.session.username = user.username;
+            
+
             //res.send(user);
-            console.log(req.session.username)
-            res.sendFile(path.join(__dirname, "/home.html"));
+            console.log(req.session.user)
+            res.redirect('/dashboard');
  			 }
  			 else{
  			 	res.send('wrong credentials')
@@ -296,9 +301,10 @@ Routes for posts
 */
 
 app.post('/comment', (req, res)=>{
+    console.log(req.session.user)
     const post = new Post({
 
-        user_id: req.body.user_id,
+        username: req.session.username,
         match_id: req.body.match_id,
         text: req.body.text,
         date: new Date().toISOString()
@@ -341,6 +347,12 @@ app.get('/comments/:match_id', (req, res)=>{
 })
 
 
+
+app.get('/currentUserInfo', (req, res)=>{
+
+    res.send(req.session)
+
+})
 
 
 

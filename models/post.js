@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 
 const PostSchema = new mongoose.Schema({ 
-	user_id: {
+	username: {
 		type: String,
 		required: true,
 		minlength: 1,
