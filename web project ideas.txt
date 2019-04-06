@@ -1,0 +1,45 @@
+web programming ideas:
+
+1- soccer blog shows games and u can comment on them
+sign up/login page
+
+user: {id, username, password}
+game: {id, home, away, date, round}
+team: {id, name, stadium, abbreviation}
+post: {user_id, game_id, text, date}
+
+
+For front end ajax requests:
+1- sign in and sign up verification and proper redirection
+2- requests to get the games based on the rounds and put them in the second dropdown with their id's
+3- display game info after let's go button is clicked
+4- get comments from the comment table and display them
+5- post request for adding a new comment and displaying it in the dom
+
+
+
+requests details:
+
+request: get match by match id  response: team names, stadium, date string
+
+request: get matches by round  response: match string, match ID
+
+request: get comments on a game response: comments with their usernames
+
+request: make a comment, give game id and comment text
+
+request: sign up, cases: username is taken, password is short, passwords do not match (front end), success
+
+request: login, cases: user does not exist, wrong password, success
+
+
+steps:
+
+1- load the database with teams and matches
+2- add route that gets match id, match string for all matches in a round
+3- add route that takes one match id and returns home team name, away team name, stadium, and date string
+4- get the requests working for drop downs and having id's as name attribute, store selected match id in a hidden input
+5- render the team logos and match info
+6- add post functionality using session user and hidden input match id
+7- implement sign in functionality
+8- implement sign up functionality

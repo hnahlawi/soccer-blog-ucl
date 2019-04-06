@@ -10,6 +10,14 @@ const refreshButton = document.getElementById("refresh-div")
 
 refreshButton.addEventListener('click', refresh)
 
+const roundDropdown = document.getElementById('dropdown1')
+const matchDropdown = document.getElementById('dropdown2')
+
+matchDropdown.style.display = "none"
+
+roundDropdown.addEventListener('change', selectMatch)
+
+
 function addComment(){
 
 	var commentBox = document.createElement('div')
@@ -36,14 +44,21 @@ function addComment(){
 
 function refresh(){
 
-
-
-
     $('#refresh-img').rotate({
       angle: 0,
       animateTo:180
       })
 
-	$("#comment-section").animate({ scrollTop: $('#comment-section').prop("scrollHeight")}, 500);
+	$("#comment-section").animate({ scrollTop: $('#comment-section').prop("scrollHeight")}, 1500);
 
+}
+
+function selectMatch(){
+
+
+
+
+
+
+	matchDropdown.style.display= "inline"
 }
