@@ -21,7 +21,26 @@ const goButton = document.getElementById('goButton')
 
 goButton.addEventListener('click', loadMatch)
 
+
+
 function addComment(){
+
+	const request = new Request('/currentUserInfo', {
+	        method: 'get',
+	        headers: {
+	            'Content-Type': 'application/json'
+	        },
+	    });
+	let data = {
+		match_id: document.getElementById('matchID').innerHTML,
+		text: document.getElementById('new-comment-text').value
+
+	}
+
+	fetch(request).then((res)=>{
+		return res.json()
+
+	}).then((userInfo)=>{
 
 	var commentBox = document.createElement('div')
 	var username = document.createElement('h5')
@@ -30,13 +49,31 @@ function addComment(){
 	commentBox.classList.add('comment-wrapper')
 	commentBox.classList.add('comment')
 
-	username.innerHTML = 'Some User'
+	username.innerHTML = userInfo.username
 	commentText.innerHTML = document.getElementById('new-comment-text').value
 
 	document.getElementById('new-comment-text').value = ""
 	commentBox.appendChild(username)
 	commentBox.appendChild(commentText)
 	commentSection.appendChild(commentBox)
+	
+
+	})
+
+	
+
+	const commentreq = new Request('/comment', {
+	        method: 'post',
+	        body: JSON.stringify(data),
+	        headers: {
+	            'Content-Type': 'application/json'
+	        },
+	    });
+
+	fetch(commentreq).then((result)=>{
+
+		console.log('posted comment')
+	})
 	
 	$("#comment-section").animate({ scrollTop: $('#comment-section').prop("scrollHeight")}, 500);
 
@@ -46,11 +83,54 @@ function addComment(){
 
 
 function refresh(){
+	while (commentSection.firstChild) {
+    commentSection.removeChild(commentSection.firstChild);
+	
+	}
 
     $('#refresh-img').rotate({
       angle: 0,
       animateTo:180
       })
+
+	const request = new Request('/comments/' + document.getElementById('matchID').innerHTML, {
+	        method: 'get',
+	        headers: {
+	            'Content-Type': 'application/json'
+	        },
+	    });
+
+
+
+	fetch(request).then((result)=>{
+		return result.json()
+	}).then((commentsArray)=>{
+
+		for (let i =0; i < commentsArray.length; i++){
+
+
+			var commentBox = document.createElement('div')
+			var username = document.createElement('h5')
+			var commentText = document.createElement('span')
+
+			commentBox.classList.add('comment-wrapper')
+			commentBox.classList.add('comment')
+
+			username.innerHTML = commentsArray[i].username
+			commentText.innerHTML = commentsArray[i].text
+
+			commentBox.appendChild(username)
+			commentBox.appendChild(commentText)
+			commentSection.appendChild(commentBox)
+			
+
+		}
+
+	})
+   
+
+
+
 
 	$("#comment-section").animate({ scrollTop: $('#comment-section').prop("scrollHeight")}, 1500);
 
@@ -109,6 +189,7 @@ function selectMatch(){
 		}
 
 	})
+
 
 
 
@@ -194,6 +275,7 @@ function loadMatch(){
 
 
 
+	refresh()
 
 
 

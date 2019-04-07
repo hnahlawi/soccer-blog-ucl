@@ -354,7 +354,7 @@ app.get('/comments/:match_id', (req, res)=>{
 
             result.sort(function(a, b) {
                 
-                return new Date(b.date) - new Date(a.date)
+                return new Date(a.date) - new Date(b.date)
             })
 
             res.send(result)
@@ -368,7 +368,13 @@ app.get('/comments/:match_id', (req, res)=>{
 
 app.get('/currentUserInfo', (req, res)=>{
 
-    res.send(req.session)
+    const response = {
+
+        user_id: req.session.user,
+        username: req.session.username
+    }
+
+    res.send(response)
 
 })
 
