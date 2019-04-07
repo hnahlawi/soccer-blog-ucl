@@ -131,6 +131,10 @@ function refresh(){
 
 	document.getElementById('post-button').style.display="inline"
 
+	document.getElementById('new-comment-text').style.display="inline"
+	document.getElementById('refresh-img').style.display="inline"
+
+
 
 	$("#comment-section").animate({ scrollTop: $('#comment-section').prop("scrollHeight")}, 1500);
 
