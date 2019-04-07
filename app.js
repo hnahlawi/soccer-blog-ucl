@@ -98,15 +98,15 @@ app.post('/signup', (req, res) =>{
                 req.session.user = user._id;
                 req.session.username = user.username;
 
-                res.redirect('/dashboard');
+                res.send({message: '/dashboard', status: "200"});
             }).catch((error) => {
                 //res.sendFile(path.join(__dirname, "/public/pages/index.html"));
                 console.log('error')
-                res.send(error.message);
+                res.send({message: 'short', status: "404"});
             }); 
         }else{
         	console.log('redirecting back to home')
-            res.redirect('/');
+            res.send({message: 'exists', status: "404"});
         }
 })
 
@@ -121,11 +121,11 @@ app.post('/login', sessionChecker, (req, res) => {
     console.log('password we got is', password)
     User.findOne({"username": username}).then((user)=>{
         if(!user){
-            res.send('user does not exist');
+            res.send({message: 'user does not exist', status: "404"});
         }else{
         	bcrypt.compare(password, user.password, (error, result) => {
                 if(error){
-                    res.send('wrong credentials')
+                res.send({message: 'wrong credentials', status: "404"});
              }
 
             if (result == true){
@@ -134,10 +134,10 @@ app.post('/login', sessionChecker, (req, res) => {
             
 
             //res.send(user);
-            res.redirect('/dashboard');
+            res.send({message: '/dashboard', status: "200"});
  			 }
  			 else{
- 			 	res.send('wrong credentials')
+                res.send({message: 'wrong credentials', status: "404"});
  			 }
            })
         }

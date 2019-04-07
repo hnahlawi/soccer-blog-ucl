@@ -52,7 +52,10 @@
               <label for="Password1" >Password</label>
               <input type="password" class="form-control" id="InputPassword1" placeholder="Password" name="password">
             </div>
-            <button type="submit" class="btn btn-primary">Sign In</button>
+            <div class="form-group">
+              <span id="errorMsg" style="display: none; color: red;">Wrong credentials</span>
+            </div>
+            <button type="button" class="btn btn-primary" id="signInButton">Sign In</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -88,7 +91,11 @@
               <label for="InputPassword3">Confirm Password</label>
               <input type="password" class="form-control" id="InputPassword3" placeholder="Password">
             </div>
-            <button type="submit" class="btn btn-primary">Create Account</button>
+            <div class="form-group">
+              <span id="errorMsg2" style="display: none; color: red;"></span>
+            </div>
+            
+            <button type="button" class="btn btn-primary" id="signUpButton">Create Account</button>
           </form>
         </div>
         <div class="modal-footer">
