@@ -96,9 +96,9 @@ app.post('/signup', (req, res) =>{
             user.save().then((result) => {
             	console.log('saved user')
                 req.session.user = user._id;
-                req.session.email = user.username;
-                req.session.save()
-                res.sendFile(path.join(__dirname, "/home.html"));
+                req.session.username = user.username;
+
+                res.redirect('/dashboard');
             }).catch((error) => {
                 //res.sendFile(path.join(__dirname, "/public/pages/index.html"));
                 console.log('error')
@@ -134,7 +134,6 @@ app.post('/login', sessionChecker, (req, res) => {
             
 
             //res.send(user);
-            console.log(req.session.user)
             res.redirect('/dashboard');
  			 }
  			 else{
