@@ -129,7 +129,7 @@ function refresh(){
 	})
    
 
-
+	document.getElementById('post-button').style.display="inline"
 
 
 	$("#comment-section").animate({ scrollTop: $('#comment-section').prop("scrollHeight")}, 1500);
