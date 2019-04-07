@@ -214,6 +214,7 @@ function loadMatch(){
 
 	else{
 
+
 		const currentMatch = matchDropdown.options[matchDropdown.selectedIndex].value
 
 		document.getElementById('matchID').innerHTML = currentMatch;
@@ -265,14 +266,18 @@ function loadMatch(){
 
 			document.getElementById('away-image').src = "images/" + away.name +".png"
 			document.getElementById('away-name').innerHTML = away.name
+			document.getElementById('game-div').style.display = "inline"
 
 
 		})
 
+
+
 		})
+
+
 
 	}
-
 
 
 	refresh()
