@@ -17,6 +17,9 @@ matchDropdown.style.display = "none"
 
 roundDropdown.addEventListener('change', selectMatch)
 
+const goButton = document.getElementById('goButton')
+
+goButton.addEventListener('click', loadMatch)
 
 function addComment(){
 
@@ -53,12 +56,145 @@ function refresh(){
 
 }
 
+
+
+
 function selectMatch(){
 
+	while (matchDropdown.firstChild) {
+    matchDropdown.removeChild(matchDropdown.firstChild);
+	
+	}
 
+
+	var round = roundDropdown.options[roundDropdown.selectedIndex].value;
+
+
+
+
+	const request = new Request('/matchesByRound/' + round, {
+	        method: 'get',
+	        headers: {
+	            'Content-Type': 'application/json'
+	        },
+	    });
+
+	fetch(request).then((res)=>{
+
+
+
+		return res.json()
+
+	}).then((result)=>{
+
+		console.log(result)
+
+		var firstOption = document.createElement('option')
+		firstOption.value = "Select match:"
+		firstOption.innerHTML = "Select match:"
+		matchDropdown.appendChild(firstOption)
+
+		for (let i = 0; i < result.length; i++){
+
+
+			var option = document.createElement('option')
+			option.value = result[i]._id
+
+			option.innerHTML = result[i].match_string
+
+			console.log(option)
+			matchDropdown.appendChild(option)
+
+
+		}
+
+	})
 
 
 
 
 	matchDropdown.style.display= "inline"
+}
+
+
+
+function loadMatch(){
+	var round = matchDropdown.options[matchDropdown.selectedIndex].value;
+
+	const span = document.getElementById('selectError')
+
+	if (matchDropdown.style.display == "none" || matchDropdown.value == "Select match:"){
+		span.style.display = "inline"
+
+		setInterval(function(){ span.style.display = "none" }, 2000);
+		return null
+
+	}
+
+	else{
+
+		const currentMatch = matchDropdown.options[matchDropdown.selectedIndex].value
+
+		document.getElementById('matchID').innerHTML = currentMatch;
+
+		const matchreq = new Request('/match/' + currentMatch, {
+	        method: 'get',
+	        headers: {
+	            'Content-Type': 'application/json'
+	        },
+	    });
+
+		fetch(matchreq).then((result)=>{
+			return result.json()
+		}).then((match)=>{
+
+
+		document.getElementById("match-date").innerHTML = match.date
+
+		const homereq = new Request('/team/' + match.home, {
+	        method: 'get',
+	        headers: {
+	            'Content-Type': 'application/json'
+	        },
+	    });
+
+		const awayreq = new Request('/team/' + match.away, {
+	        method: 'get',
+	        headers: {
+	            'Content-Type': 'application/json'
+	        },
+	    });
+
+		fetch(homereq).then((result)=>{
+			return result.json()
+		}).then((home)=>{
+
+			document.getElementById('home-image').src = "images/" + home.name +".png"
+			document.getElementById('home-name').innerHTML = home.name
+			document.getElementById('stadium-name').innerHTML = home.stadium
+
+
+		})
+
+
+		fetch(awayreq).then((result)=>{
+			return result.json()
+		}).then((away)=>{
+
+
+			document.getElementById('away-image').src = "images/" + away.name +".png"
+			document.getElementById('away-name').innerHTML = away.name
+
+
+		})
+
+		})
+
+	}
+
+
+
+
+
+
 }

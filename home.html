@@ -24,19 +24,18 @@
             <select name="dropdown1" id="dropdown1">
 
                 <option value="Select round:" selected>Select round:</option>
-                <option value="Quarter Finals">Quarter Finals</option>
-                <option value="Semi Finals">Semi Finals</option>
-                <option value="Finals">Finals</option>
+                <option value="quarters">Quarter Finals</option>
+                <option value="semis">Semi Finals</option>
+                <option value="finals">Finals</option>
             </select>
             <br><br>
             <select name="dropdown2" id="dropdown2">
-                <option value="Match 1" selected>Select match:</option>
-                <option value="Match 1">Match 1</option>
-                <option value="Match 2">Match 2</option>
-                <option value="Match 3">Match 3</option>
+                <option value="Select match:" selected>Select match:</option>
             </select>
             <br><br>
-            <button type="submit" id="goButton">Let's Go!!</button>
+            <button type="button" id="goButton">Let's Go!!</button>
+            <br><br>
+            <span style="color: white; display: none; font-size:1.2em;" id="selectError">Please select round & match</span>
 
         </form>
 
@@ -54,9 +53,9 @@
             <div class="game-wrapper">
                 <div class="home-team">
 
-                    <img src="images/FC Barcelona.PNG" />
+                    <img src="images/FC Barcelona.PNG" id="home-image"/>
                     <br>
-                    <span>FC Barcelona</span>
+                    <span id="home-name">FC Barcelona</span>
 
                 </div>
                 <div class="versus">
@@ -67,14 +66,14 @@
 
                 <div class="away-team">
 
-                    <img src="images/Manchester United.PNG" />
+                    <img src="images/Manchester United.PNG" id="away-image"/>
                     <br>
-                    <span class="team-name">Manchester United</span>
+                    <span class="team-name" id="away-name">Manchester United</span>
                 </div>
                 <div>
                     <br>
-                    <span class="team-name">Stadium: Camp Nou</span><br>
-                    <span class="team-name">Wednesday April 5, 2019</span>
+                    <span class="team-name" id="stadium-name">Stadium: Camp Nou</span><br>
+                    <span class="team-name" id="match-date">Wednesday April 5, 2019</span>
 
                 </div>
 
@@ -168,7 +167,7 @@
 
 
 <script src="./public/scripts/home.js"></script>
-
+<textarea style="display: none;" value="" id="matchID"></textarea>
 
 </body>
 

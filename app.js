@@ -220,7 +220,17 @@ app.get('/match/:id', (req, res)=>{
         }
         else{
 
-            res.send(result)
+            const response = {
+                _id: req.params.id,
+                home: result.home,
+                away: result.away,
+                match_string: result.match_string,
+                round: result.round,
+                date: datetime.format(new Date(result.date), "dddd MMMM D, YYYY")
+
+            }
+
+            res.send(response)
         }
 
 
@@ -233,11 +243,18 @@ app.get('/matchesByRound/:round', (req, res) =>{
     Match.find({"round": req.params.round}).then((result)=>{
 
         if(result.length !== 0){
+
+            result.sort(function(a, b) {
+                
+                return new Date(a.date) - new Date(b.date)
+            })
+
+
             res.send(result)
         }
         else{
 
-            res.send('no matches in this round')
+            res.send([])
         }
 
     })
