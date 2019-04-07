@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/hnahlawi/soccer-blog-ucl/issues"
   },
-  "homepage": "https://github.com/hnahlawi/soccer-blog-ucl#readme"
+  "homepage": "https://github.com/hnahlawi/soccer-blog-ucl#readme",
+"engines": {
+    "node": "10.15.1"
+  }
 }
