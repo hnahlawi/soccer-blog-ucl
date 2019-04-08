@@ -142,7 +142,7 @@ app.post('/login', sessionChecker, (req, res) => {
            })
         }
     }).catch((error) => {
-        res.send('some error');
+         res.send({message: 'error', status: "404"});
     });
 });
 
