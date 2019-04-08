@@ -38,7 +38,7 @@ function signIn(){
 			console.log('success')
 			window.location.replace(window.location.protocol + "//" + window.location.host + response.message)
 		}
-		else if(reponse.message == 'error'){
+		else if(response.message == 'error'){
 			const errorMsg = document.getElementById('errorMsg')
 			errorMsg.innerHTML = "Server error. Please try again."
 			errorMsg.style.display="block"
