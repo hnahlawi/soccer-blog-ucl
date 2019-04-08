@@ -124,12 +124,12 @@ app.post('/login', sessionChecker, (req, res) => {
     User.findOne({"username": username}).then((user)=>{
         if(!user){
             console.log('in user does not exist case')
-            res.send({message: 'user does not exist', status: "404"});
+            res.send({"message": 'user does not exist', "status": "404"});
         }else{
         	bcrypt.compare(password, user.password, (error, result) => {
                 if(error){
                     console.log('in bcrypt error')
-                res.send({message: 'wrong credentials', status: "404"});
+                res.send({"message": 'wrong credentials', "status": "404"});
              }
 
             if (result == true){
@@ -138,17 +138,17 @@ app.post('/login', sessionChecker, (req, res) => {
             console.log('in success case')
 
             //res.send(user);
-            res.send({message: '/dashboard', status: "200"});
+            res.send({"message": '/dashboard', "status": "200"});
  			 }
  			 else{
                 console.log('in wrong credentials')
-                res.send({message: 'wrong credentials', status: "404"});
+                res.send({"message": 'wrong credentials', "status": "404"});
  			 }
            })
         }
     }).catch((error) => {
         console.log('in error catch')
-         res.send({message: 'error', status: "404"});
+         res.send({"message": 'error', "status": "404"});
     });
 });
 
