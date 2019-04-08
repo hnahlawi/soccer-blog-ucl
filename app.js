@@ -115,13 +115,15 @@ app.post('/signup', (req, res) =>{
 
 app.post('/login', sessionChecker, (req, res) => {
     //log(req.body.isAdmin);
+    res.set('Content-Type', 'application/json');
+
     const username = req.body.username;
     const password = req.body.password;
     console.log('username we got is', username)
     console.log('password we got is', password)
     User.findOne({"username": username}).then((user)=>{
         if(!user){
-            console.log('in user does not exist')
+            console.log('in user does not exist case')
             res.send({message: 'user does not exist', status: "404"});
         }else{
         	bcrypt.compare(password, user.password, (error, result) => {
