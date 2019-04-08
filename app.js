@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({
 const sessionChecker = (req, res, next) => {
 	if (req.session.user) {
 		console.log('here')
-        res.redirect('/dashboard');
+        res.send({message: '/dashboard', status: "200"});
 	} else {
 		next();
 	}
