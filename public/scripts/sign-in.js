@@ -38,8 +38,19 @@ function signIn(){
 			console.log('success')
 			window.location.replace(window.location.protocol + "//" + window.location.host + response.message)
 		}
+		else if(reponse.message == 'error'){
+			const errorMsg = document.getElementById('errorMsg')
+			errorMsg.innerHTML = "Server error. Please try again."
+			errorMsg.style.display="block"
+
+			setInterval(function(){ errorMsg.style.display = "none" }, 5000);
+
+
+		}
 		else{
 			const errorMsg = document.getElementById('errorMsg')
+			errorMsg.innerHTML = "Wrong credentials"
+
 			errorMsg.style.display="block"
 
 			setInterval(function(){ errorMsg.style.display = "none" }, 5000);
